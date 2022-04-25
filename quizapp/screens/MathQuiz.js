@@ -63,7 +63,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Quiz Application</Text>
       <FlatList data={questions} renderItem={({ item, index }) =>
-        <Question showAnswers={score !== undefined} data={item} key={index}
+        <quizList showAnswers={score !== undefined} data={item} key={index}
           setAnswer={
             (answer) => {
               console.log("Setting the answers for " + index)
@@ -74,7 +74,7 @@ export default function App() {
               })
             }}
           answers={answers[index]}>
-        </Question>
+        </quizList>
       }> </FlatList>
       <Button title="Submit" onPress={() => questions.forEach((q, i) => checkAnswers(q, answers[i]))} disabled={answers.length == 0}></Button>
       {score !== undefined ? <Text>Score: {score}</Text> : undefined}
