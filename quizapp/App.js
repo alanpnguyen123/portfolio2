@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useCallback, useState } from 'react';
 import HomeScreen from './screens/HomeScreen'
+import RepetitionExerciseScreen from './screens/MathQuiz'
 
 
 const Stack = createNativeStackNavigator();

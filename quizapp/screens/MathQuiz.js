@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import {  View, Button, FlatList } from 'react-native';
-import { useCallback } from 'react';
-import { styles } from '../App';
+import { Text, View, Button} from 'react-native';
+import { useCallback, useState } from 'react';
+import { styles } from '../App'
 
 
-
-function RepetitionExerciseScreen({ navigation, route }) {
+export default function RepetitionExerciseScreen({ navigation, route }) {
     let { exerciseKey, exerciseList } = route.params
     let [count, setCount] = useState(0)
     let currentExercise = exerciseList.find(ex => ex.key === exerciseKey)
