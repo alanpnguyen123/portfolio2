@@ -4,11 +4,11 @@ import { useCallback, useState } from 'react';
 import { styles } from '../App'
 
 export default function QuizScreen({ navigation, route }) {
-  let { quizKey, exerciseList } = route.params
+  let { quizKey, quizList } = route.params
   let [count, setCount] = useState(0)
-  let currentExercise = exerciseList.find(ex => ex.key === exerciseKey)
+  let currentExercise = quizList.find(ex => ex.key === quizKey)
   let suggestion = useCallback(() => {
-    navigation.navigate("RepetitionExercise", { exerciseKey: currentExercise.suggestedKey, exerciseList: exerciseList, count: 0 })
+    navigation.navigate("RepetitionExercise", { quizKey: currentExercise.suggestedKey, count: 0 })
   })
   return (
     <View style={styles.container}>
