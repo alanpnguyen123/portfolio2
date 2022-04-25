@@ -5,7 +5,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useCallback, useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/MathQuiz';
-import SurveyScreen from'.screens/SurveyScreen'
+import SurveyScreen from './screens/SurveyScreen';
+
+
 
 
 
