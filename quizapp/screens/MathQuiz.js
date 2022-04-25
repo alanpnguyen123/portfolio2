@@ -1,121 +1,129 @@
-import { StatusBar } from 'expo-status-bar';
-import { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { Button, Card, CheckBox } from 'react-native-elements';
+import * as React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import { Card } from 'react-native-elements';
 import { styles } from '../App'
 
-
-let questions = [
-  {
-    title: "Question Title",
-    multipleAnswers: true,
-    answers: [
-      { correct: false, title: "Question 1" },
-      { correct: true, title: "Question 2" },
-      { correct: true, title: "Question 3" },
-      { correct: true, title: "Question 4" },
-
-
-    ]
-  },
-  {
-    title: "Question Title 2",
-    multipleAnswers: true,
-    answers: [
-      { correct: false, title: "Question A" },
-      { correct: true, title: "Question B" },
-      { correct: false, title: "Question C" },
-      { correct: false, title: "Question D" },
-
-
-    ]
-  }
-]
-export default function QuizScreen() {
-  let [score, setScore] = useState()
-  let [answers, setAnswers] = useState([])
-  let checkAnswers = useCallback((data, qAnswers) => {
-    console.log("Checkin Answers")
-    let answersCorrect = true
-    console.log(data, qAnswers[i])
-    for (let i = 0; i < data.answers.lenth; i++) {
-      let qCorrect
-      if (data.answers[i].correct) {
-        qCorrect = qAnswers.includes(i)
-      } else {
-        qCorrect = !qAnswers.includes(i)
+export default class QuizScreen extends React.Component {
+  constructor(){
+    super();
+    var dataSet=[
+      {
+        question: "Smallest Natural number is?",
+        answers: [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        correct: 0
+      },
+      {
+        question: "Successor of 99 is?",
+        answers: [
+          "99",
+          "100",
+          "98",
+          "None"
+        ],
+        correct: 1
       }
-      answersCorrect = answersCorrect && qCorrect
-    }
-    if (answersCorrect) {
-      console.log("Adding one to Score")
-      setScore(prevScore => {
-        if (prevScore !== undefined) {
-          return prevScore + 1
-        } else {
-          return 1
-        }
-      })
+    ];
+    this.state = {current:0, dataSet: dataSet, correct:0, incorrect:0};
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(choice) {
+    if (choice == this.state.dataSet[this.state.current].correct) {
+      this.setState({correct: this.state.correct + 1})
     } else {
-      console.log("Setting score to 0")
-      setScore(prevScore => prevScore === undefined ? 0 : prevScore)
+      this.setState({incorrect: this.state.incorrect + 1})
     }
-  }, [answers, score])
-  return <>
-    <View style={styles.container}>
-      <Text>Quiz Application</Text>
-      <FlatList data={questions} renderItem={({ item, index }) =>
-        <Question showAnswers={score !== undefined} data={item} key={index}
-          setAnswer={
-            (answer) => {
-              console.log("Setting the answers for " + index)
-              console.log(answers)
-              setAnswers(prev => {
-                prev[index] = answer
-                return [...prev]
-              })
-            }}
-          answers={answers[index]}>
-        </Question>
-      }> </FlatList>
-      <Button title="Submit" onPress={() => questions.forEach((q, i) => checkAnswers(q, answers[i]))} disabled={answers.length == 0}></Button>
-      {score !== undefined ? <Text>Score: {score}</Text> : undefined}
-      <StatusBar style="auto" />
-    </View>
-  </>
+
+    if (this.state.current == this.state.dataSet.length-1) {
+      this.setState({current: 0})
+      this.setState({incorrect: 0})
+      this.setState({correct: 0})
+    } else {
+      this.setState({current: this.state.current + 1}) 
+    }
+  }
+  render() {
+    return(
+      <View>
+        <Card>
+          <ScoreArea correct={this.state.correct} incorrect={this.state.incorrect} />
+        </Card>
+        <QuizArea handleClick={this.handleClick} dataSet={this.state.dataSet[this.state.current]} />
+      </View>
+    )
+  }
 }
 
-function Question({ data, answers, setAnswers, showAnswers }) {
-  let selectAnswer = useCallback((index) => {
-    console.log("onPress()", index, answers);
-    if (answers === undefined) {
-      answers = []
-    }
-    if (!answers.includes(index)) {
-      answers.push(index);
-      setAnswers([...answers])
-      console.log(`new answers for ${data.title} `, ...answers)
-    } else {
-      answers = answers.filter(i => i !== index)
-      setAnswers([...answers])
-      console.log("new answers: ", ...answers)
-    }
-  }, [answers])
+function Question(props) {
   return (
-    <>
-      <Card>
-        <Card.Title>{data.title}</Card.Title>
-        <View>
-          {data.answers.map(
-            (answer, index) =>
-              <CheckBox key={index} textStyle={showAnswers && !answer.correct ? styles.incorrect : undefined} checked={answers ? answers.includes(index) : false}
-                onIconPress={() => selectAnswer(index)}
-                onPress={() => selectAnswer(index)}
-                title={answer.title}>
-              </CheckBox>
-          )}
-        </View>
-      </Card>
-    </>
-  );
+    <Card.Title>
+      {props.dataSet.question}
+    </Card.Title>
+  )
+}
+
+function Answer(props) {
+  return(
+    <View>
+    <TouchableOpacity
+      style={styles.loginButton}
+      onPress={() => {
+        props.handleClick(props.choice);
+      }}>
+      <Text style={{ textAlign: 'center' }}>{props.answer}</Text>
+    </TouchableOpacity>
+    </View>
+  )
+}
+
+function AnswerList(props) {
+  var answers = []
+  for (let i = 0; i < props.dataSet.answers.length; i++) {
+    answers.push(<Answer choice={i} handleClick={props.handleClick} answer={props.dataSet.answers[i]} />)
+  }
+  return(
+    <View>
+      {answers}
+    </View>
+  )
+}
+
+function QuizArea(props) {
+  return(
+    <Card style={styles}>
+      <Question dataSet={props.dataSet} />
+      <Card.Divider/>
+      <AnswerList dataSet={props.dataSet} handleClick={props.handleClick} />
+    </Card>
+  )
+}
+
+function TotalCorrect(props) {
+  return(
+    <View style={styles}><Text>Correct: {props.correct}</Text></View>
+  )
+}
+
+function TotalIncorrect(props) {
+  return(
+    <View style={styles}><Text>Incorrect: {props.incorrect}</Text></View>
+  )
+}
+
+function ScoreArea(props) {
+  return(
+    <View style={styles} >
+      <TotalCorrect correct={props.correct} />
+      <TotalIncorrect incorrect={props.incorrect} />
+    </View>
+  )
 }

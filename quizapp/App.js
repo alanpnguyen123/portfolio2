@@ -41,4 +41,11 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  Button: {
+    width: "100%",
+    display: "block",
+    textAlign: "left",
+    float: "left",
+    padding: "2em"
+  }
 });
