@@ -30,7 +30,7 @@ const QuizScreen = () => {
             />
         </View>
         </Card>
-      <Button title="Submit" disabled={true}></Button>
+      <Button title="Submit" disabled={text ===""}></Button>
     </View>
   );
 }
