@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, FlatList } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useCallback, useState } from 'react';
 import HomeScreen from './screens/HomeScreen'
-import Quiz from './screens/MathQuiz'
+import QuizScreen from './screens/MathQuiz'
 
 
 const Stack = createNativeStackNavigator();
@@ -28,7 +28,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} initialParams={{quizList:quizList}}/>
-        <Stack.Screen name="MathQuiz" component={Quiz}initialParams={{quizList:quizList}} />
+        <Stack.Screen name="MathQuiz" component={QuizScreen}initialParams={{quizList:quizList}} />
       </Stack.Navigator>
     </NavigationContainer>);
 }
