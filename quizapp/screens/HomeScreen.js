@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import {  View, Button, FlatList, KeyboardAvoidingView } from 'react-native';
+import {  View, Button, KeyboardAvoidingView, TouchableOpacity, Text } from 'react-native';
 import { useCallback } from 'react';
 import { styles } from '../App'
+import { Card } from 'react-native-elements';
+import * as React from 'react';
 
 
-export default function render() {
+export default class Dashboard extends React.Component {
+    constructor(){
+      super();
+      this.state={
+      }
+    }
+  render() {
     return (
     
       <KeyboardAvoidingView style={styles.containerBox}>
@@ -12,10 +20,10 @@ export default function render() {
           <Text style={styles.textCenter}>Select Quiz</Text>
         </View>
         <TouchableOpacity onPress={() => {
-          this.props.navigation.navigate('NaturalQuiz');
+          this.props.navigation.navigate('MathQuiz');
         }}>
         <Card>
-          <Card.Title>Natural number</Card.Title>
+          <Card.Title>MathQuiz</Card.Title>
           <Card.Divider/>
            <View style={styles.user}>
           </View>
@@ -23,10 +31,10 @@ export default function render() {
        </TouchableOpacity>
 
         <TouchableOpacity onPress={() => {
-          this.props.navigation.navigate('WholeQuiz');
+          this.props.navigation.navigate('Survey');
         }}>
           <Card>
-            <Card.Title>Whole Number</Card.Title>
+            <Card.Title>Survey</Card.Title>
             <Card.Divider/>
             <View style={styles.user}>
             </View>
@@ -35,4 +43,4 @@ export default function render() {
       </KeyboardAvoidingView>
     );
   }
-
+}
