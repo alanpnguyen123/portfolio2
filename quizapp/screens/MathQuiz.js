@@ -29,7 +29,7 @@ let questions = [
     ]
   }
 ]
-export default function App() {
+export default function Quiz() {
   let [score, setScore] = useState()
   let [answers, setAnswers] = useState([])
   let checkAnswers = useCallback((data, qAnswers) => {
@@ -63,7 +63,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Quiz Application</Text>
       <FlatList data={questions} renderItem={({ item, index }) =>
-        <quizList showAnswers={score !== undefined} data={item} key={index}
+        <Question showAnswers={score !== undefined} data={item} key={index}
           setAnswer={
             (answer) => {
               console.log("Setting the answers for " + index)
@@ -74,7 +74,7 @@ export default function App() {
               })
             }}
           answers={answers[index]}>
-        </quizList>
+        </Question>
       }> </FlatList>
       <Button title="Submit" onPress={() => questions.forEach((q, i) => checkAnswers(q, answers[i]))} disabled={answers.length == 0}></Button>
       {score !== undefined ? <Text>Score: {score}</Text> : undefined}
@@ -83,7 +83,7 @@ export default function App() {
   </>
 }
 
-function quizList({ data, answers, setAnswers, showAnswers }) {
+function Question({ data, answers, setAnswers, showAnswers }) {
   let selectAnswer = useCallback((index) => {
     console.log("onPress()", index, answers);
     if (answers === undefined) {
@@ -122,6 +122,12 @@ const styles = StyleSheet.create({
     incorrect: {
       textDecorationStyle: "solid",
       textDecorationLine: "line-through"
+    },
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   });
   
