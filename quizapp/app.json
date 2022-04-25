@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "quizapp",
-    "slug": "quizapp",
+    "name": "lab8",
+    "slug": "lab8",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
