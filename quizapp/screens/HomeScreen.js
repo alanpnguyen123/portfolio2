@@ -7,7 +7,7 @@ import { styles } from '../App'
 export default function HomeScreen({ navigation,  route }) {
     let quizList = route.params.quizList
     let gotoExercise = useCallback(({ key }) => {
-      navigation.navigate("RepetitionExercise", { exerciseKey: key, count: 0, quizList: quizList })
+      navigation.navigate("RepetitionExercise", { quizKey: key, count: 0, quizList: quizList })
     })
     return (
       <View style={styles.container}>
