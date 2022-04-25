@@ -5,11 +5,11 @@ import { styles } from '../App'
 
 
 export default function RepetitionExerciseScreen({ navigation, route }) {
-    let { exerciseKey, exerciseList } = route.params
+    let { exerciseKey, quizList } = route.params
     let [count, setCount] = useState(0)
-    let currentExercise = exerciseList.find(ex => ex.key === exerciseKey)
+    let currentExercise = quizList.find(ex => ex.key === exerciseKey)
     let suggestion = useCallback(() => {
-      navigation.navigate("RepetitionExercise", { exerciseKey: currentExercise.suggestedKey, exerciseList: exerciseList, count: 0 })
+      navigation.navigate("RepetitionExercise", { exerciseKey: currentExercise.suggestedKey, count: 0 })
     })
     return (
       <View style={styles.container}>

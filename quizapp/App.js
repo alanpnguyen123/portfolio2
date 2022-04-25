@@ -11,14 +11,14 @@ const Stack = createNativeStackNavigator();
 
 
 export default function App() {
-  let exerciseList = [
+  let quizList = [
     {
-      name: "Push Ups",
+      name: "MathQuiz",
       key: "1",
       suggestedKey: "2"
     },
     {
-      name: "Pull Ups",
+      name: "Survey",
       key: "2",
       suggestedKey: "1"
     },
@@ -27,8 +27,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} initialParams={{exerciseList:exerciseList}}/>
-        <Stack.Screen name="RepetitionExercise" component={RepetitionExerciseScreen}initialParams={{exerciseList:exerciseList}} />
+        <Stack.Screen name="Home" component={HomeScreen} initialParams={{quizList:quizList}}/>
+        <Stack.Screen name="MathQuiz" component={RepetitionExerciseScreen}initialParams={{quizList:quizList}} />
       </Stack.Navigator>
     </NavigationContainer>);
 }
