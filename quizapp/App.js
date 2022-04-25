@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useCallback, useState } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import QuizScreen from './screens/MathQuiz';
+import SurveyScreen from'.screens/SurveyScreen'
 
 
 
@@ -30,6 +31,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} initialParams={{quizList:quizList}}/>
         <Stack.Screen name="MathQuiz" component={QuizScreen}initialParams={{quizList:quizList}} />
+        <Stack.Screen name="Survey" component={SurveyScreen}initialParams={{quizList:quizList}} />
       </Stack.Navigator>
     </NavigationContainer>);
 }
