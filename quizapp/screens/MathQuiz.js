@@ -4,102 +4,27 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { Button, Card, CheckBox } from 'react-native-elements';
 import { styles } from '../App'
 
-let questions = [
-    {
-      title: "What is 2+2?",
-      answers: "4",
-    },
-    {
-      title: "What is 4 squared",
-      answers:"16",
-   
-    }
-  ]
-  export default function QuizScreen() {
-    let [score, setScore] = useState()
-    let [answers, setAnswers] = useState([])
-    let checkAnswers = useCallback((data, qAnswers) => {
-      console.log("Checkin Answers")
-      let answersCorrect = true
-      console.log(data, qAnswers[i])
-      for (let i = 0; i < data.answers.lenth; i++) {
-        let qCorrect
-        if (data.answers[i].correct) {
-          qCorrect = qAnswers.includes(i)
-        } else {
-          qCorrect = !qAnswers.includes(i)
-        }
-        answersCorrect = answersCorrect && qCorrect
-      }
-      if (answersCorrect) {
-        console.log("Adding one to Score")
-        setScore(prevScore => {
-          if (prevScore !== undefined) {
-            return prevScore + 1
-          } else {
-            return 1
-          }
-        })
-      } else {
-        console.log("Setting score to 0")
-        setScore(prevScore => prevScore === undefined ? 0 : prevScore)
-      }
-    }, [answers, score])
-    return <>
-      <View style={styles.container}>
-        <Text>Quiz Application</Text>
-        <FlatList data={questions} renderItem={({ item, index }) =>
-          <Question showAnswers={score !== undefined} data={item} key={index}
-            setAnswer={
-              (answer) => {
-                console.log("Setting the answers for " + index)
-                console.log(answers)
-                setAnswers(prev => {
-                  prev[index] = answer
-                  return [...prev]
-                })
-              }}
-            answers={answers[index]}>
-          </Question>
-        }> </FlatList>
-        <Button title="Submit" onPress={() => questions.forEach((q, i) => checkAnswers(q, answers[i]))} disabled={answers.length == 0}></Button>
-        {score !== undefined ? <Text>Score: {score}</Text> : undefined}
-        <StatusBar style="auto" />
-      </View>
-    </>
-  }
-  
-  function Question({ data, answers, setAnswers, showAnswers }) {
-    let selectAnswer = useCallback((index) => {
-      console.log("onPress()", index, answers);
-      if (answers === undefined) {
-        answers = []
-      }
-      if (!answers.includes(index)) {
-        answers.push(index);
-        setAnswers([...answers])
-        console.log(`new answers for ${data.title} `, ...answers)
-      } else {
-        answers = answers.filter(i => i !== index)
-        setAnswers([...answers])
-        console.log("new answers: ", ...answers)
-      }
-    }, [answers])
-    return (
-      <>
-        <Card>
-          <Card.Title>{data.title}</Card.Title>
-          <View>
-            {data.answers.map(
-              (answer, index) =>
-                <CheckBox key={index} textStyle={showAnswers && !answer.correct ? styles.incorrect : undefined} checked={answers ? answers.includes(index) : false}
-                  onIconPress={() => selectAnswer(index)}
-                  onPress={() => selectAnswer(index)}
-                  title={answer.title}>
-                </CheckBox>
-            )}
-          </View>
-        </Card>
-      </>
-    );
-  }
+export default function QuizScreen(){
+
+const [state, setState] = useState({
+        value:'',
+        show:''
+    });
+
+const handleChange = (e) => {
+    setState({value: e.target.value})
+}
+
+const submit = () => {
+    setState({show: state.value})
+}
+
+return(
+        <>
+            <form onSubmit={()=>submit()}>
+                <input type="text" value={state.value} onChange={(e)=>handleChange(e)} />
+                <input type="submit" />
+            </form>
+            <h2>{state.show}</h2>
+        </>
+)}
