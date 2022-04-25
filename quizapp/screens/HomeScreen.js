@@ -10,7 +10,7 @@ export default function HomeScreen({ navigation,  route }) {
       navigation.navigate("MathQuiz", { quizKey: key, count: 0, quizList: quizList })
     })
     let gotoSurvey = useCallback(({ key }) => {
-        navigation.navigate("MathQuiz", { quizKey: key, count: 0, quizList: quizList })
+        navigation.navigate("Survey", { quizKey: key, count: 0, quizList: quizList })
       })
     return (
       <View style={styles.container}>
