@@ -30,7 +30,7 @@ let questions = [
       ]
     }
   ]
-  export default function SurveyScreen() {
+  export default function QuizScreen() {
     let [score, setScore] = useState()
     let [answers, setAnswers] = useState([])
     let checkAnswers = useCallback((data, qAnswers) => {
