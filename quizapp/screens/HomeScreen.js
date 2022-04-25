@@ -1,22 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import {  View, Button, FlatList } from 'react-native';
+import {  View, Button, FlatList, KeyboardAvoidingView } from 'react-native';
 import { useCallback } from 'react';
 import { styles } from '../App'
 
 
-export default function HomeScreen({ navigation,  route }) {
-    let quizList = route.params.quizList
-    let gotoQuiz = useCallback(({ key }) => {
-      navigation.navigate("MathQuiz", { quizKey: key, count: 0, quizList: quizList })
-      navigation.navigate("Survey", { quizKey: key, count: 0, quizList: quizList })
-    })
-    // let gotoSurvey = useCallback(({ key }) => {
+export default function render() {
     return (
-      <View style={styles.container}>
-        <FlatList data={quizList} renderItem={({ item }) =>
-          <Button onPress={() => gotoQuiz(item)} title={item.name}></Button>
-        } />
-        <StatusBar style="auto" />
-      </View>
-    )
+    
+      <KeyboardAvoidingView style={styles.containerBox}>
+        <View>
+          <Text style={styles.textCenter}>Select Quiz</Text>
+        </View>
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.navigate('NaturalQuiz');
+        }}>
+        <Card>
+          <Card.Title>Natural number</Card.Title>
+          <Card.Divider/>
+           <View style={styles.user}>
+          </View>
+        </Card>
+       </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.navigate('WholeQuiz');
+        }}>
+          <Card>
+            <Card.Title>Whole Number</Card.Title>
+            <Card.Divider/>
+            <View style={styles.user}>
+            </View>
+          </Card>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+    );
   }
+
