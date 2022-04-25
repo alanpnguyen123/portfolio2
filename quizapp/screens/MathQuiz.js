@@ -12,7 +12,9 @@ let questions = [
       answers: "16"
     }
   ]
-
+function Question(){
+    
+}
 const QuizScreen = () => {
   const [text, setText] = useState('');
   return (
