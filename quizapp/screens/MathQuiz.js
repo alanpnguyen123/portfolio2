@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { styles } from '../App'
 
-class Reservation extends React.Component {
+export default class QuizScreen extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        isGoing: true,
         numberOfGuests: 2
       };
   
@@ -25,14 +24,6 @@ class Reservation extends React.Component {
     render() {
       return (
         <form>
-          <label>
-            Is going:
-            <input
-              name="isGoing"
-              type="checkbox"
-              checked={this.state.isGoing}
-              onChange={this.handleInputChange} />
-          </label>
           <br />
           <label>
             Number of guests:
