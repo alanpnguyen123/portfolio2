@@ -87,33 +87,3 @@ function AnswerList(props) {
   )
 }
 
-function QuizArea(props) {
-  return(
-    <Card style={styles}>
-      <Question dataSet={props.dataSet} />
-      <Card.Divider/>
-      <AnswerList dataSet={props.dataSet} handleClick={props.handleClick} />
-    </Card>
-  )
-}
-
-function TotalCorrect(props) {
-  return(
-    <View style={styles}><Text>Correct: {props.correct}</Text></View>
-  )
-}
-
-function TotalIncorrect(props) {
-  return(
-    <View style={styles}><Text>Incorrect: {props.incorrect}</Text></View>
-  )
-}
-
-function ScoreArea(props) {
-  return(
-    <View style={styles} >
-      <TotalCorrect correct={props.correct} />
-      <TotalIncorrect incorrect={props.incorrect} />
-    </View>
-  )
-}
