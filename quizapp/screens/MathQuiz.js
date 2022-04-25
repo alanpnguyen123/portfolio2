@@ -1,30 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { useCallback, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { Button, Card, CheckBox } from 'react-native-elements';
-import { styles } from '../App'
+import React, { useState } from 'react';
+import { Text, TextInput, View } from 'react-native';
 
-export default function QuizScreen(){
+let questions = [
+    {
+      title: "What is 2+2?",
+      answers: "4"
+    },
+    {
+      title: "What is 4 squared?",
+      answers: "16"
+    }
+  ]
 
-const [state, setState] = useState({
-        value:'',
-        show:''
-    });
-
-const handleChange = (e) => {
-    setState({value: e.target.value})
+const QuizScreen = () => {
+  const [text, setText] = useState('');
+  return (
+    <View style={{padding: 10}}>
+      <TextInput
+        placeholder="Type Your Answer Here"
+        onChangeText={newText => setText(newText)}
+        defaultValue={text}
+      />
+    </View>
+  );
 }
 
-const submit = () => {
-    setState({show: state.value})
-}
-
-return(
-        <>
-            <form onSubmit={()=>submit()}>
-                <input type="text" value={state.value} onChange={(e)=>handleChange(e)} />
-                <input type="submit" />
-            </form>
-            <h2>{state.show}</h2>
-        </>
-)}
+export default QuizScreen;
