@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, Text, TextInput, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { styles } from '../App'
 
 let questions = [
@@ -13,30 +14,19 @@ let questions = [
     }
   ]
 function Question(){
-    
+
 }
 const QuizScreen = () => {
   const [text, setText] = useState('');
   return (
     <View style={styles.container}>
-         <Text>Quiz Application</Text>
-      <FlatList data={questions} renderItem={({ item, index }) =>
-        <Question data={item} key={index}
-          setAnswer={
-            (answer) => {
-              setAnswers(prev => {
-                prev[index] = answer
-                return [...prev]
-              })
-            }}
-          answers={answers[index]}>
-        </Question>
-      }> </FlatList>
+         <Text>Type in the best Answer</Text>
       <TextInput
         placeholder="Type Your Answer Here"
         onChangeText={newText => setText(newText)}
         defaultValue={text}
       />
+      <Button title="Submit" disabled={true}></Button>
     </View>
   );
 }
