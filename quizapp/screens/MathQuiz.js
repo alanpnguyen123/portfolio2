@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import {View,Text,TouchableOpacity} from 'react-native';
 import { Card } from 'react-native-elements';
 import { styles } from '../App'
 
