@@ -6,28 +6,13 @@ import { styles } from '../App'
 
 let questions = [
     {
-      title: "Question Title",
-      multipleAnswers: true,
-      answers: [
-        { correct: false, title: "Question 1" },
-        { correct: true, title: "Question 2" },
-        { correct: true, title: "Question 3" },
-        { correct: true, title: "Question 4" },
-  
-  
-      ]
+      title: "What is 2+2?",
+      answers: "4",
     },
     {
-      title: "Question Title 2",
-      multipleAnswers: true,
-      answers: [
-        { correct: false, title: "Question A" },
-        { correct: true, title: "Question B" },
-        { correct: false, title: "Question C" },
-        { correct: false, title: "Question D" },
-  
-  
-      ]
+      title: "What is 4 squared",
+      answers:"16",
+   
     }
   ]
   export default function QuizScreen() {
