@@ -40,3 +40,39 @@ const QuizScreen = () => {
 }
 
 export default QuizScreen;
+
+function Question({ data, answers, setAnswers, showAnswers }) {
+    let selectAnswer = useCallback((index) => {
+      console.log("onPress()", index, answers);
+      if (answers === undefined) {
+        answers = []
+      }
+      if (!answers.includes(index)) {
+        answers.push(index);
+        setAnswers([...answers])
+        console.log(`new answers for ${data.title} `, ...answers)
+      } else {
+        answers = answers.filter(i => i !== index)
+        setAnswers([...answers])
+        console.log("new answers: ", ...answers)
+      }
+    }, [answers])
+    return (
+      <>
+        <Card>
+          <Card.Title>{data.title}</Card.Title>
+          <View>
+            {data.answers.map(
+              (answer, index) =>
+                <CheckBox key={index} textStyle={showAnswers && !answer.correct ? styles.incorrect : undefined} checked={answers ? answers.includes(index) : false}
+                  onIconPress={() => selectAnswer(index)}
+                  onPress={() => selectAnswer(index)}
+                  title={answer.title}>
+                </CheckBox>
+            )}
+          </View>
+        </Card>
+      </>
+    );
+  }
+  
