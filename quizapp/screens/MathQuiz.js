@@ -28,6 +28,16 @@ const QuizScreen = () => {
         }
     },[text,score])
     let [text2, setText2] = useState('');
+    let [score2, setScore2] = useState()
+    let checkAnswers2 = useCallback (()=>{
+        if (text == questions[1].answers){
+            setScore2("Correct!")       
+        }
+        else{
+            setScore2("Incorrect!")
+            console.log(text)
+        }
+    },[text,score])
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -50,8 +60,8 @@ const QuizScreen = () => {
             onChangeText2={newText2 => setText2(newText2)}
             defaultValue2={text2}
             />
-            <Button title="Submit" onPress={()=>checkAnswers()} disabled={text ===""}></Button>
-            {score !==undefined? <Text>{score}</Text> : undefined}
+            <Button title="Submit" onPress={()=>checkAnswers2()} disabled={text2 ===""}></Button>
+            {score !==undefined? <Text>{score2}</Text> : undefined}
         </View>
         </Card>
     </View>
