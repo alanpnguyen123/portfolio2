@@ -27,17 +27,16 @@ const QuizScreen = () => {
             console.log(text)
         }
     },[text,score])
-    let [text2, setText2] = useState('');
-    let [score2, setScore2] = useState()
-    let checkAnswers2 = useCallback (()=>{
-        if (text == questions[1].answers){
-            setScore2("Correct!")       
+    let [number, setNumber] = useState('');
+    let[grade, setGrade] =useState()
+    let checkNumber = useCallback(()=>{
+        if (number == questions[1].answers){
+            setGrade("Correct!")
         }
         else{
-            setScore2("Incorrect!")
-            console.log(text)
+            setGrade("Incorrect!")
         }
-    },[text,score])
+    },[number,grade])
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -57,11 +56,11 @@ const QuizScreen = () => {
         <View>
             <TextInput
             placeholder="Type Your Answer Here"
-            onChangeText2={newText2 => setText2(newText2)}
-            defaultValue2={text2}
+            onChangeNumber={newNumber => setNumber(newNumber)}
+            defaultNumber={number}
             />
-            <Button title="Submit" onPress={()=>checkAnswers2()} disabled={text2 ===""}></Button>
-            {score !==undefined? <Text>{score2}</Text> : undefined}
+            <Button title="Submit" onPress={()=>checkNumber()} disabled={text ===""}></Button>
+            {grade !==undefined? <Text>{grade}</Text> : undefined}
         </View>
         </Card>
     </View>
