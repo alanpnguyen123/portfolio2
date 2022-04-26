@@ -21,13 +21,12 @@ const QuizScreen = () => {
     let checkAnswers = useCallback (()=>{
         if (text == questions){
             setScore(1)
-            console.log(setText)
         }
         else{
             setScore(0)
             console.log(text)
         }
-    },[questions])
+    },[text,score])
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
