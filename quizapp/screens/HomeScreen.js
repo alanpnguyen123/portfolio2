@@ -16,13 +16,13 @@ export default class Dashboard extends React.Component {
     
       <KeyboardAvoidingView style={styles.containerBox}>
         <View>
-          <Text style={styles.textCenter}>Select Quiz</Text>
+          <Text style={styles.textCenter}>Select Option Below</Text>
         </View>
         <TouchableOpacity onPress={() => {
           this.props.navigation.navigate('MathQuiz');
         }}>
         <Card>
-          <Card.Title>MathQuiz</Card.Title>
+          <Card.Title>Math Quiz</Card.Title>
           <Card.Divider/>
            <View style={styles.user}>
           </View>
