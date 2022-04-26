@@ -12,7 +12,7 @@ const SurveyScreen = () => {
     let [text, setText] = useState('');
     let [score, setScore] = useState()
     let checkAnswers = useCallback (()=>{
-        if (text == 1-10){
+        if (text >=1 && text<=10 ){
             setScore("Thank you for the feedback!")  
             console.log(text)     
         }
@@ -34,7 +34,8 @@ const SurveyScreen = () => {
             defaultValue={text}
             />
             <Button title="Submit" onPress={()=>checkAnswers()} disabled={text ===""}></Button>
-            
+            {score !==undefined? <Text>{score}</Text> : undefined}
+
         </View>
         </Card>
     </View>
