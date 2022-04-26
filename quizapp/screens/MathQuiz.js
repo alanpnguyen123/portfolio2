@@ -39,7 +39,7 @@ const QuizScreen = () => {
             console.log(number)
         }
     },[number,grade])
-    
+
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -63,7 +63,7 @@ const QuizScreen = () => {
             onChangeNumber={newNumber => setNumber(newNumber)}
             defaultNumber={number}
             />
-            <Button title="Submit" onPress={()=>checkNumber()} disabled={text ===""}></Button>
+            <Button title="Submit" onPress={()=>checkNumber()} disabled={number ===""}></Button>
             {grade !==undefined? <Text>{grade}</Text> : undefined}
         </View>
         </Card>
