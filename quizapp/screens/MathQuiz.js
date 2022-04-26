@@ -29,13 +29,13 @@ const QuizScreen = () => {
     let [number, setNumber] = useState('');
     let[grade, setGrade] =useState()
     let checkNumber = useCallback(()=>{
-        if (number == questions[1].answers){
+        if (text == questions[1].answers){
             setGrade("Correct!")
         }
         else{
             setGrade("Incorrect!")
             console.log(questions[1].answers)
-            console.log(number)
+            console.log(text)
         }
     },[number,grade])
 
@@ -60,7 +60,7 @@ const QuizScreen = () => {
             <TextInput
             placeholder="Type Your Answer Here"
             onChangeNumber={newNumber => setNumber(newNumber)}
-            defaultNumber={number}
+            defaultNumber={text}
             />
             <Button title="Submit" onPress={()=>checkNumber()} disabled={text ===""}></Button>
             {grade !==undefined? <Text>{grade}</Text> : undefined}
