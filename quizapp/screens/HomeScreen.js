@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import {  View, Button, KeyboardAvoidingView, TouchableOpacity, Text } from 'react-native';
 import { useCallback } from 'react';
 import { styles } from '../App'
