@@ -1,7 +1,5 @@
-import { useAssets } from 'expo-asset';
-import { title } from 'process';
 import React, { useCallback, useState } from 'react';
-import { FlatList, Text, TextInput, useColorScheme, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { styles } from '../App'
 
@@ -36,6 +34,7 @@ const QuizScreen = () => {
         }
         else{
             setGrade("Incorrect!")
+            console.log(questions[1].answers)
             console.log(number)
         }
     },[number,grade])
@@ -63,7 +62,7 @@ const QuizScreen = () => {
             onChangeNumber={newNumber => setNumber(newNumber)}
             defaultNumber={number}
             />
-            <Button title="Submit" onPress={()=>checkNumber()} disabled={number ===""}></Button>
+            <Button title="Submit" onPress={()=>checkNumber()} disabled={text ===""}></Button>
             {grade !==undefined? <Text>{grade}</Text> : undefined}
         </View>
         </Card>
