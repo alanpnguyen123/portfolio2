@@ -23,7 +23,7 @@ const QuizScreen = () => {
             setScore("Correct!")       
         }
         else{
-            setScore(0)
+            setScore("Incorrect!")
             console.log(text)
         }
     },[text,score])
@@ -32,8 +32,8 @@ const QuizScreen = () => {
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
         <Card>
+        <Card.Title>{questions[0].title}</Card.Title>
         <View>
-            <Card.title>{questions[1].title}</Card.title>
             <TextInput
             placeholder="Type Your Answer Here"
             onChangeText={newText => setText(newText)}
@@ -50,6 +50,8 @@ const QuizScreen = () => {
             onChangeText2={newText2 => setText2(newText2)}
             defaultValue2={text2}
             />
+            <Button title="Submit" onPress={()=>checkAnswers()} disabled={text ===""}></Button>
+            {score !==undefined? <Text>{score}</Text> : undefined}
         </View>
         </Card>
     </View>
