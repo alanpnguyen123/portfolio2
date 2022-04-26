@@ -22,7 +22,6 @@ const QuizScreen = () => {
         }
         else{
             setScore("Incorrect!")
-            console.log(text)
         }
     },[text,score])
 
