@@ -19,7 +19,7 @@ const QuizScreen = () => {
     let [text, setText] = useState('');
     let [score, setScore] = useState()
     let checkAnswers = useCallback (()=>{
-        if (text == "4"){
+        if (text == questions){
             setScore(1)
             console.log(setText)
         }
