@@ -34,7 +34,7 @@ const QuizScreen = () => {
         else{
             setGrade("Incorrect!")
             console.log(questions[1].answers)
-            console.log(text)
+            console.log(number)
         }
     },[number,grade])
 
@@ -59,9 +59,9 @@ const QuizScreen = () => {
             <TextInput
             placeholder="Type Your Answer Here"
             onChangeNumber={newNumber => setNumber(newNumber)}
-            defaultNumber={text}
+            defaultNumber={number}
             />
-            <Button title="Submit" onPress={()=>checkNumber()} disabled={text ===""}></Button>
+            <Button title="Submit" onPress={()=>checkNumber()} disabled={number ===""}></Button>
             {grade !==undefined? <Text>{grade}</Text> : undefined}
         </View>
         </Card>
