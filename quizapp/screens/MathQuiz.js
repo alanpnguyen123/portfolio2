@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FlatList, Text, TextInput, View } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { styles } from '../App'
@@ -18,6 +18,7 @@ function Question(){
 }
 const QuizScreen = () => {
   const [text, setText] = useState('');
+  let checkAnswer=useCallback
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
