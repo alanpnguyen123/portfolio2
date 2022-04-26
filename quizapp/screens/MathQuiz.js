@@ -27,6 +27,7 @@ const QuizScreen = () => {
             console.log(text)
         }
     },[text,score])
+
     let [number, setNumber] = useState('');
     let[grade, setGrade] =useState()
     let checkNumber = useCallback(()=>{
@@ -35,8 +36,10 @@ const QuizScreen = () => {
         }
         else{
             setGrade("Incorrect!")
+            console.log(number)
         }
     },[number,grade])
+    
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -53,6 +56,7 @@ const QuizScreen = () => {
         </View>
         </Card>
         <Card>
+        <Card.Title>{questions[1].title}</Card.Title>
         <View>
             <TextInput
             placeholder="Type Your Answer Here"
