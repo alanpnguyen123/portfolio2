@@ -16,6 +16,7 @@ let questions = [
     }
   ]
 const QuizScreen = () => {
+    let [text2, setText2] = useState('');
     let [text, setText] = useState('');
     let [score, setScore] = useState()
     let checkAnswers = useCallback (()=>{
@@ -37,6 +38,15 @@ const QuizScreen = () => {
             placeholder="Type Your Answer Here"
             onChangeText={newText => setText(newText)}
             defaultValue={text}
+            />
+        </View>
+        </Card>
+        <Card>
+        <View>
+            <TextInput
+            placeholder="Type Your Answer Here"
+            onChangeText2={newText2 => setText2(newText2)}
+            defaultValue2={text2}
             />
         </View>
         </Card>
