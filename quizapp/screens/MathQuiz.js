@@ -21,9 +21,9 @@ const QuizScreen = () => {
     let checkAnswers = useCallback (()=>{
         let correctAnswer=true
         for(let i=0; i< questions.answers; i++){
-            correctAnswer=questions.answers
+            correctAnswer=text
         }
-        if (text === correctAnswer){
+        if (correctAnswer){
             setScore(1)
         }
         else{
