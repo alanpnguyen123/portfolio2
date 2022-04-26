@@ -16,16 +16,18 @@ let questions = [
     }
   ]
 const QuizScreen = () => {
+    let [text, setText] = useState('');
     let [score, setScore] = useState()
     let checkAnswers = useCallback (()=>{
         if (text == "4"){
             setScore(1)
+            console.log(setText)
         }
         else{
             setScore(0)
+            console.log(text)
         }
     },[questions])
-    const [text, setText] = useState('');
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -39,7 +41,7 @@ const QuizScreen = () => {
         </View>
         </Card>
       <Button title="Submit" onPress={()=>checkAnswers()} disabled={text ===""}></Button>
-      {score ? <Text>Score: {score}</Text> : undefined}
+      {score !==undefined? <Text>Score: {score}</Text> : undefined}
     </View>
   );
 }
