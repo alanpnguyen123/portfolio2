@@ -1,5 +1,7 @@
+import { useAssets } from 'expo-asset';
+import { title } from 'process';
 import React, { useCallback, useState } from 'react';
-import { FlatList, Text, TextInput, View } from 'react-native';
+import { FlatList, Text, TextInput, useColorScheme, View } from 'react-native';
 import { Button, Card } from 'react-native-elements';
 import { styles } from '../App'
 
@@ -13,12 +15,17 @@ let questions = [
       answers: "16"
     }
   ]
-function Question(){
-
-}
 const QuizScreen = () => {
-  const [text, setText] = useState('');
-  let checkAnswer=useCallback
+    let [score, setScore] = useState()
+    let checkAnswers = useCallback (()=>{
+        if (text == "4"){
+            setScore(1)
+        }
+        else{
+            setScore(0)
+        }
+    },[questions])
+    const [text, setText] = useState('');
   return (
     <View style={styles.container}>
     <Text>Type in the best Answer</Text>
@@ -31,7 +38,8 @@ const QuizScreen = () => {
             />
         </View>
         </Card>
-      <Button title="Submit" onPress={check} disabled={text ===""}></Button>
+      <Button title="Submit" onPress={()=>checkAnswers()} disabled={text ===""}></Button>
+      {score ? <Text>Score: {score}</Text> : undefined}
     </View>
   );
 }
