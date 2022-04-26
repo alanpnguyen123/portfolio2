@@ -19,16 +19,19 @@ const QuizScreen = () => {
     let [text, setText] = useState('');
     let [score, setScore] = useState()
     let checkAnswers = useCallback (()=>{
-        let correctAnswer=true
+        let correctAnswer=text
         for(let i=0; i< questions.answers; i++){
             correctAnswer=text
         }
-        if (correctAnswer){
+        if (correctAnswer = questions.answers){
             setScore(1)
+            console.log(correctAnswer)
+            console.log(questions.answers)
         }
         else{
             setScore(0)
             console.log(text)
+            console.log(questions.answers)
         }
     },[text,score])
   return (
